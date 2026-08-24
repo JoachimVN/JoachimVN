@@ -21,6 +21,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Checking out with the PAT means the refresh commit is pushed by a real
+          # user rather than github-actions[bot]. A public repo has its scheduled
+          # workflows disabled after 60 days with no repository activity, and bot
+          # pushes are widely reported not to count. The commit author below stays
+          # the bot, so these refreshes never count toward the commit figure.
+          # No loop: the push trigger above only watches scripts/** and this file,
+          # and a refresh only touches assets/**. Keep that filter.
+          token: ${{ secrets.STATS_TOKEN || github.token }}
 
       - uses: actions/setup-python@v5
         with:
