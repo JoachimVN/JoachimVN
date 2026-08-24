@@ -183,6 +183,12 @@ STUDY_START = 2025
 STUDY_YEARS = 3
 STUDY_END = datetime.date(2028, 6, 1)            # graduates that spring
 
+# One fact per slot. The top rail owns the institution, programme and year; the
+# bottom rail owns where he actually lives. They read as a duplicate right now
+# only because the campus city and the home city are the same place. If that
+# stops being true, put the campus on the top rail (PROGRAMME becomes something
+# like "NTNU TRONDHEIM") and change LOCATION here, rather than restating either
+# fact in the README.
 LOCATION = "TRONDHEIM, NORWAY"
 AVAILABILITY = "OPEN TO INTERNSHIPS"
 SITE = "JOAVN.DEV"

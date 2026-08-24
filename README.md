@@ -17,8 +17,6 @@ thoughtful UI/UX.
 I challenge myself with genuine personal projects that I'm passionate about.
 I build things that I'd actually want to use myself.
 
-Bachelor of Engineering in Computer Science at NTNU, in Trondheim.
-
 <div align="center">
 
 <picture>
