@@ -40,12 +40,12 @@ MONO = "ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monos
 # joavn.dev's own tokens: --bg #09090E, --text #F2EFE6, --accent #C9952A.
 # Light mode swaps the board and the chalk, and darkens the accents to hold up
 # against cream.
-DARK = dict(bg="#09090E", fg="#F2EFE6", dim="#89836F", rule="#26252E",
-            unlit="0.09", grain="0.05",
-            accents=["#C9952A", "#3572A5", "#E34C26", "#00ADD8"])
-LIGHT = dict(bg="#F2EFE6", fg="#09090E", dim="#6B6759", rule="#DCD7C7",
-             unlit="0.13", grain="0.03",
-             accents=["#966E17", "#2A5A85", "#B93A18", "#0083A3"])
+DARK = {"bg": "#09090E", "fg": "#F2EFE6", "dim": "#89836F", "rule": "#26252E",
+        "unlit": "0.09", "grain": "0.05",
+        "accents": ["#C9952A", "#3572A5", "#E34C26", "#00ADD8"]}
+LIGHT = {"bg": "#F2EFE6", "fg": "#09090E", "dim": "#6B6759", "rule": "#DCD7C7",
+         "unlit": "0.13", "grain": "0.03",
+         "accents": ["#966E17", "#2A5A85", "#B93A18", "#0083A3"]}
 
 # Copied from Portfolio/script.js so a language is the same colour in both places.
 LANG_COLORS = {
@@ -57,22 +57,22 @@ LANG_COLORS = {
 
 # Two layouts, not one layout scaled. Type sizes in the narrow one are chosen so
 # that a 400px board in a roughly 390px column renders at close to 1:1.
-WIDE = dict(
-    w=1000, pad=44, eb_fs=11, eb_ls=2.2, item_fs=13,
-    name_lines=["JOACHIM", "VALDERSNES NILSEN"], pitch=8.6, dot=2.7,
-    dw=26.0, dh=46.0, dt=5.0, gap=8, score_cols=4, legend_cols=3,
-    items_below=False, items_x=200,
-)
-NARROW = dict(
-    w=400, pad=18, eb_fs=10, eb_ls=0.8, item_fs=10.5,
-    name_lines=["JOACHIM", "VALDERSNES", "NILSEN"], pitch=6.0, dot=1.85,
-    dw=17.0, dh=30.0, dt=3.4, gap=5, score_cols=2, legend_cols=2,
-    items_below=True, items_x=18,
-)
+WIDE = {
+    "w": 1000, "pad": 44, "eb_fs": 11, "eb_ls": 2.2, "item_fs": 13,
+    "name_lines": ["JOACHIM", "VALDERSNES NILSEN"], "pitch": 8.6, "dot": 2.7,
+    "dw": 26.0, "dh": 46.0, "dt": 5.0, "gap": 8, "score_cols": 4, "legend_cols": 3,
+    "items_below": False, "items_x": 200,
+}
+NARROW = {
+    "w": 400, "pad": 18, "eb_fs": 10, "eb_ls": 0.8, "item_fs": 10.5,
+    "name_lines": ["JOACHIM", "VALDERSNES", "NILSEN"], "pitch": 6.0, "dot": 1.85,
+    "dw": 17.0, "dh": 30.0, "dt": 3.4, "gap": 5, "score_cols": 2, "legend_cols": 2,
+    "items_below": True, "items_x": 18,
+}
 
 
-def is_wide(L):
-    return L["w"] > 600
+def is_wide(layout):
+    return layout["w"] > 600
 
 
 def mono_w(text, fs, ls=0.0):
@@ -87,10 +87,10 @@ def reveal(delay, fade=0.7, attr="opacity", a="0", b="1"):
             'dur="%.2fs" begin="0s" fill="freeze"/>' % (attr, a, a, b, delay / total, total))
 
 
-def panel(p, L, h, body, label, extra_defs=""):
+def panel(p, layout, h, body, label, extra_defs=""):
     """A board: flat rectangle, hairline inner frame, and a little surface grain."""
-    w = L["w"]
-    inset = 12.5 if is_wide(L) else 7.5
+    w = layout["w"]
+    inset = 12.5 if is_wide(layout) else 7.5
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h:.0f}" width="{w}" height="{h:.0f}" role="img" aria-label="{label}">
   <defs>
     <filter id="grain" x="0" y="0" width="100%" height="100%">
@@ -106,26 +106,26 @@ def panel(p, L, h, body, label, extra_defs=""):
 '''
 
 
-def rail(p, L, y, left, right="", right_fill=None, left_fill=None):
+def rail(p, layout, y, left, right="", right_fill=None, left_fill=None):
     """One line of small tracked type, left aligned and optionally right aligned."""
     out = ['<text x="%d" y="%.1f" font-family="%s" font-size="%s" letter-spacing="%s" fill="%s">%s</text>'
-           % (L["pad"], y, MONO, L["eb_fs"], L["eb_ls"], left_fill or p["dim"], left)]
+           % (layout["pad"], y, MONO, layout["eb_fs"], layout["eb_ls"], left_fill or p["dim"], left)]
     if right:
         out.append('<text x="%d" y="%.1f" text-anchor="end" font-family="%s" font-size="%s" '
                    'letter-spacing="%s" fill="%s">%s</text>'
-                   % (L["w"] - L["pad"], y, MONO, L["eb_fs"], L["eb_ls"],
+                   % (layout["w"] - layout["pad"], y, MONO, layout["eb_fs"], layout["eb_ls"],
                       right_fill or p["fg"], right))
     return "".join(out)
 
 
-def tick(colour, L, y):
+def tick(colour, layout, y):
     return '<rect x="%d" y="%.1f" width="%d" height="2" fill="%s"/>' % (
-        L["pad"], y, 30 if is_wide(L) else 22, colour)
+        layout["pad"], y, 30 if is_wide(layout) else 22, colour)
 
 
-def hrule(p, L, y):
+def hrule(p, layout, y):
     return '<rect x="%d" y="%.1f" width="%d" height="1" fill="%s"/>' % (
-        L["pad"], y, L["w"] - L["pad"] * 2, p["rule"])
+        layout["pad"], y, layout["w"] - layout["pad"] * 2, p["rule"])
 
 
 # --------------------------------------------------------------- flip dot type
@@ -162,9 +162,9 @@ GLYPHS = {
 COLS, ROWS = 5, 7
 
 
-def lit_dots(L, y0, line_gap):
-    dots, pitch, pad = [], L["pitch"], L["pad"]
-    for row_index, line in enumerate(L["name_lines"]):
+def lit_dots(layout, y0, line_gap):
+    dots, pitch, pad = [], layout["pitch"], layout["pad"]
+    for row_index, line in enumerate(layout["name_lines"]):
         top = y0 + row_index * (ROWS * pitch + line_gap)
         for char_index, char in enumerate(line):
             grid = GLYPHS.get(char, GLYPHS[" "]).split("|")
@@ -209,51 +209,51 @@ def year_label():
     return "YEAR %d OF %d" % (year, STUDY_YEARS) if year else ""
 
 
-def banner(p, L):
+def banner(p, layout):
     gold, cyan = p["accents"][0], p["accents"][3]
-    pitch, dot, wide = L["pitch"], L["dot"], is_wide(L)
+    pitch, dot, wide = layout["pitch"], layout["dot"], is_wide(layout)
     line_gap = 16 if wide else 10
     top_y, board_y = (48, 96) if wide else (28, 58)
 
-    lines = L["name_lines"]
+    lines = layout["name_lines"]
     board_h = len(lines) * ROWS * pitch + (len(lines) - 1) * line_gap - (pitch - dot * 2)
-    board_w = L["w"] - L["pad"] * 2
+    board_w = layout["w"] - layout["pad"] * 2
     lit = "".join('<use href="#d" x="%.1f" y="%.1f"/>' % (x, y)
-                  for x, y in lit_dots(L, board_y, line_gap))
+                  for x, y in lit_dots(layout, board_y, line_gap))
 
     if wide:
         programme = " &#183; ".join(x for x in ["NTNU", PROGRAMME, year_label()] if x)
-        top = rail(p, L, top_y, programme, SITE)
+        top = rail(p, layout, top_y, programme, SITE)
         rule_top, rule_bottom, h = 62, 248, 300
-        rails = rail(p, L, 274, LOCATION, AVAILABILITY, cyan)
+        rails = rail(p, layout, 274, LOCATION, AVAILABILITY, cyan)
     else:
         # Three rail lines instead of two, so nothing has to be abbreviated.
         rule_top = top_y + 14
         rule_bottom = board_y + board_h + 16
-        top = rail(p, L, top_y, "NTNU &#183; " + PROGRAMME, year_label())
-        rails = (rail(p, L, rule_bottom + 20, LOCATION, SITE)
-                 + rail(p, L, rule_bottom + 38, AVAILABILITY, left_fill=cyan))
+        top = rail(p, layout, top_y, "NTNU &#183; " + PROGRAMME, year_label())
+        rails = (rail(p, layout, rule_bottom + 20, LOCATION, SITE)
+                 + rail(p, layout, rule_bottom + 38, AVAILABILITY, left_fill=cyan))
         h = rule_bottom + 54
 
     defs = f'''
     <circle id="d" r="{dot}"/>
-    <pattern id="unlit" width="{pitch}" height="{pitch}" patternUnits="userSpaceOnUse" x="{L['pad']}" y="{board_y}">
+    <pattern id="unlit" width="{pitch}" height="{pitch}" patternUnits="userSpaceOnUse" x="{layout['pad']}" y="{board_y}">
       <circle cx="0" cy="0" r="{dot}" fill="{gold}" opacity="{p['unlit']}"/>
     </pattern>
     <clipPath id="sweep">
-      <rect x="{L['pad'] - dot}" y="{board_y - dot}" width="{board_w}" height="{board_h}">
+      <rect x="{layout['pad'] - dot}" y="{board_y - dot}" width="{board_w}" height="{board_h}">
         {reveal(0.1, 1.3, "width", "0", str(board_w))}
       </rect>
     </clipPath>'''
     body = f'''  {top}
-  {hrule(p, L, rule_top)}
-  <rect x="{L['pad'] - dot}" y="{board_y - dot}" width="{board_w}" height="{board_h}" fill="url(#unlit)"/>
+  {hrule(p, layout, rule_top)}
+  <rect x="{layout['pad'] - dot}" y="{board_y - dot}" width="{board_w}" height="{board_h}" fill="url(#unlit)"/>
   <g clip-path="url(#sweep)" fill="{gold}">{lit}</g>
-  {hrule(p, L, rule_bottom)}
+  {hrule(p, layout, rule_bottom)}
   {rails}'''
     year = study_year()
     where = "NTNU, Trondheim" + (", year %d of %d" % (year, STUDY_YEARS) if year else "")
-    return panel(p, L, h, body, "Joachim Valdersnes Nilsen. Computer science engineering at %s. "
+    return panel(p, layout, h, body, "Joachim Valdersnes Nilsen. Computer science engineering at %s. "
                                 "Open to internships. joavn.dev" % where, defs)
 
 
@@ -273,8 +273,8 @@ def _bar(x, y, length, thickness, vertical):
     return " ".join("%.1f,%.1f" % pt for pt in pts)
 
 
-def digit(char, x, y, p, L, colour):
-    dw, dh, dt = L["dw"], L["dh"], L["dt"]
+def digit(char, x, y, p, layout, colour):
+    dw, dh, dt = layout["dw"], layout["dh"], layout["dt"]
     half = dh / 2
     shapes = {
         "a": _bar(x, y, dw, dt, False), "g": _bar(x, y + half, dw, dt, False),
@@ -295,93 +295,93 @@ def digit(char, x, y, p, L, colour):
     return "".join(out)
 
 
-def number(value, cx, y, p, L, colour):
+def number(value, cx, y, p, layout, colour):
     text = str(value)
-    dw, gap = L["dw"], L["gap"]
+    dw, gap = layout["dw"], layout["gap"]
     x = cx - (len(text) * dw + (len(text) - 1) * gap) / 2
-    return "".join(digit(c, x + i * (dw + gap), y, p, L, colour) for i, c in enumerate(text))
+    return "".join(digit(c, x + i * (dw + gap), y, p, layout, colour) for i, c in enumerate(text))
 
 
-def scoreboard(p, L, d):
+def scoreboard(p, layout, d):
     cells = [("COMMITS", d["commits"]), ("PULL REQUESTS", d["prs"]),
              ("REPOSITORIES", d["repos"]), ("ISSUES OPENED", d["issues"])]
-    wide = is_wide(L)
-    cols = L["score_cols"]
-    inner = L["w"] - L["pad"] * 2
+    wide = is_wide(layout)
+    cols = layout["score_cols"]
+    inner = layout["w"] - layout["pad"] * 2
     cw = inner / cols
     top_y = 48 if wide else 28
     rule_y = 70 if wide else 42
-    row_h = L["dh"] + (30 if wide else 34)
+    row_h = layout["dh"] + (30 if wide else 34)
     label_fs = 10.5 if wide else 9.5
     parts = []
     for i, (label, value) in enumerate(cells):
         colour = p["accents"][i]
         col, row = i % cols, i // cols
-        cx = L["pad"] + cw * col + cw / 2
+        cx = layout["pad"] + cw * col + cw / 2
         label_y = rule_y + 34 + row * row_h
         if col:
             parts.append('<rect x="%.1f" y="%.1f" width="1" height="%.0f" fill="%s"/>'
-                         % (L["pad"] + cw * col, label_y - 18, row_h - 16, p["rule"]))
+                         % (layout["pad"] + cw * col, label_y - 18, row_h - 16, p["rule"]))
         parts.append('<text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="%s" '
                      'letter-spacing="1.6" fill="%s">%s</text>'
                      % (cx, label_y, MONO, label_fs, colour, label))
-        parts.append(number(value, cx, label_y + 14, p, L, colour))
+        parts.append(number(value, cx, label_y + 14, p, layout, colour))
     rows = (len(cells) + cols - 1) // cols
-    h = rule_y + 34 + (rows - 1) * row_h + L["dh"] + 32
-    body = f'''  {rail(p, L, top_y, "SCOREBOARD")}
-  {tick(p['accents'][0], L, top_y + 8)}
-  {hrule(p, L, rule_y)}
+    h = rule_y + 34 + (rows - 1) * row_h + layout["dh"] + 32
+    body = f'''  {rail(p, layout, top_y, "SCOREBOARD")}
+  {tick(p['accents'][0], layout, top_y + 8)}
+  {hrule(p, layout, rule_y)}
 {chr(10).join("  " + s for s in parts)}'''
-    return panel(p, L, h, body, "Scoreboard: %s commits, %s pull requests, %s repositories, "
+    return panel(p, layout, h, body, "Scoreboard: %s commits, %s pull requests, %s repositories, "
                                 "%s issues opened" % (d["commits"], d["prs"], d["repos"], d["issues"]))
 
 
 # --------------------------------------------------------------- language mix
-def langs(p, L, d):
-    wide = is_wide(L)
+def langs(p, layout, d):
+    wide = is_wide(layout)
     mix = list(d["languages"].items())
     total = sum(v for _, v in mix) or 1
     shares = [(name, size / total) for name, size in mix]
-    inner = L["w"] - L["pad"] * 2
+    inner = layout["w"] - layout["pad"] * 2
     top_y = 48 if wide else 28
     rule_y = 70 if wide else 42
     bar_y = 86 if wide else 56
     bar_h = 18 if wide else 14
 
-    bar, x = [], float(L["pad"])
+    bar, x = [], float(layout["pad"])
     for name, share in shares:
         w = inner * share
         bar.append('<rect x="%.2f" y="%d" width="%.2f" height="%d" fill="%s"/>'
                    % (x, bar_y, max(w - 2, 1), bar_h, LANG_COLORS.get(name, "#888888")))
         x += w
 
-    cols = L["legend_cols"]
+    cols = layout["legend_cols"]
     colw = inner / cols
     row_h = 26 if wide else 22
     first = bar_y + (40 if wide else 32)
     legend = []
     for i, (name, share) in enumerate(shares):
-        lx = L["pad"] + colw * (i % cols)
+        lx = layout["pad"] + colw * (i % cols)
         ly = first + (i // cols) * row_h
         colour = LANG_COLORS.get(name, "#888888")
         legend.append('<rect x="%.1f" y="%.1f" width="8" height="8" fill="%s"/>' % (lx, ly - 8, colour))
         legend.append('<text x="%.1f" y="%.1f" font-family="%s" font-size="%s" fill="%s">%s</text>'
-                      % (lx + 14, ly, MONO, L["item_fs"], p["fg"], name))
+                      % (lx + 14, ly, MONO, layout["item_fs"], p["fg"], name))
         legend.append('<text x="%.1f" y="%.1f" text-anchor="end" font-family="%s" font-size="%s" '
                       'fill="%s">%.1f%%</text>'
-                      % (lx + colw - (30 if wide else 10), ly, MONO, L["item_fs"], p["dim"], share * 100))
+                      % (lx + colw - (30 if wide else 10), ly, MONO, layout["item_fs"], p["dim"], share * 100))
     rows = (len(shares) + cols - 1) // cols
     h = first + (rows - 1) * row_h + 26
     defs = f'''
-    <clipPath id="wipe"><rect x="{L['pad']}" y="{bar_y}" width="{inner}" height="{bar_h}">
+    <clipPath id="wipe"><rect x="{layout['pad']}" y="{bar_y}" width="{inner}" height="{bar_h}">
       {reveal(0.15, 1.0, "width", "0", str(inner))}
     </rect></clipPath>'''
-    body = f'''  {rail(p, L, top_y, "LANGUAGE MIX")}
-  {tick(p['accents'][3], L, top_y + 8)}
-  {hrule(p, L, rule_y)}
+    body = f'''  {rail(p, layout, top_y, "LANGUAGE MIX")}
+  {tick(p['accents'][3], layout, top_y + 8)}
+  {hrule(p, layout, rule_y)}
   <g clip-path="url(#wipe)">{"".join(bar)}</g>
 {chr(10).join("  " + s for s in legend)}'''
-    return panel(p, L, h, body, "Language mix: " + ", ".join("%s %.1f percent" % (n, s * 100)
+    return panel(p, layout, h, body, "Language mix: " + ", ".join("%s %.1f percent" % (n, s * 100)
                                                              for n, s in shares), defs)
 
 
@@ -411,35 +411,35 @@ def wrap_items(items, fs, limit):
     return lines
 
 
-def stack(p, L):
-    wide = is_wide(L)
+def stack(p, layout):
+    wide = is_wide(layout)
     top_y = 48 if wide else 28
     rule_y = 70 if wide else 42
-    inner = L["w"] - L["pad"] * 2
+    inner = layout["w"] - layout["pad"] * 2
     rows, y = [], rule_y + (34 if wide else 22)
     for i, (label, items) in enumerate(STACK):
         colour = p["accents"][i]
-        rows.append('<rect x="%d" y="%.1f" width="7" height="7" fill="%s"/>' % (L["pad"], y - 7, colour))
+        rows.append('<rect x="%d" y="%.1f" width="7" height="7" fill="%s"/>' % (layout["pad"], y - 7, colour))
         rows.append('<text x="%d" y="%.1f" font-family="%s" font-size="%s" letter-spacing="%s" fill="%s">%s</text>'
-                    % (L["pad"] + 17, y, MONO, L["eb_fs"], L["eb_ls"], colour, label))
-        if L["items_below"]:
+                    % (layout["pad"] + 17, y, MONO, layout["eb_fs"], layout["eb_ls"], colour, label))
+        if layout["items_below"]:
             y += 17
-            limit, x = inner, L["items_x"]
+            limit, x = inner, layout["items_x"]
         else:
-            limit, x = L["w"] - L["pad"] - L["items_x"], L["items_x"]
-        for line in wrap_items(items, L["item_fs"], limit):
+            limit, x = layout["w"] - layout["pad"] - layout["items_x"], layout["items_x"]
+        for line in wrap_items(items, layout["item_fs"], limit):
             spans = ('<tspan fill="%s">%s</tspan>' % (p["dim"], SEP)).join(line)
             rows.append('<text x="%d" y="%.1f" font-family="%s" font-size="%s" fill="%s">%s</text>'
-                        % (x, y, MONO, L["item_fs"], p["fg"], spans))
+                        % (x, y, MONO, layout["item_fs"], p["fg"], spans))
             y += 17
         y += (17 if wide else 13)
     h = y + (2 if wide else 4)
-    body = f'''  {rail(p, L, top_y, "STACK")}
-  {tick(p['accents'][1], L, top_y + 8)}
-  {hrule(p, L, rule_y)}
+    body = f'''  {rail(p, layout, top_y, "STACK")}
+  {tick(p['accents'][1], layout, top_y + 8)}
+  {hrule(p, layout, rule_y)}
 {chr(10).join("  " + r for r in rows)}'''
     label = "; ".join("%s: %s" % (name, ", ".join(items)) for name, items in STACK)
-    return panel(p, L, h, body, label)
+    return panel(p, layout, h, body, label)
 
 
 # --------------------------------------------------------------- link plates
@@ -477,11 +477,11 @@ def main():
 
     files = {}
     for theme, p in (("dark", DARK), ("light", LIGHT)):
-        for size, L in (("", WIDE), ("-narrow", NARROW)):
-            files["banner%s-%s.svg" % (size, theme)] = banner(p, L)
-            files["stack%s-%s.svg" % (size, theme)] = stack(p, L)
-            files["scoreboard%s-%s.svg" % (size, theme)] = scoreboard(p, L, d)
-            files["langs%s-%s.svg" % (size, theme)] = langs(p, L, d)
+        for size, layout in (("", WIDE), ("-narrow", NARROW)):
+            files["banner%s-%s.svg" % (size, theme)] = banner(p, layout)
+            files["stack%s-%s.svg" % (size, theme)] = stack(p, layout)
+            files["scoreboard%s-%s.svg" % (size, theme)] = scoreboard(p, layout, d)
+            files["langs%s-%s.svg" % (size, theme)] = langs(p, layout, d)
     files["plate-portfolio.svg"] = plate("JOAVN.DEV", DARK["accents"][0], GLOBE)
     files["plate-linkedin.svg"] = plate("LINKEDIN", "#0A66C2", LINKEDIN)
     files["plate-email.svg"] = plate("EMAIL", DARK["accents"][2], ENVELOPE)
