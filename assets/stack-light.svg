@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 242" width="1000" height="242" role="img" aria-label="LANGUAGES: TypeScript, Java, JavaScript, Python, C#, SQL; FRONTEND: React, Vite, Tailwind, JavaFX, PWA; BACKEND: Node, Express, Socket.IO, PostgreSQL, Drizzle, Zod; TOOLING: Git, Vitest, Playwright, Actions, Railway, Tailscale">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect x="0.5" y="0.5" width="999" height="241" fill="#F2EFE6" stroke="#DCD7C7"/>
+  <rect x="12.5" y="12.5" width="975.0" height="217" fill="none" stroke="#DCD7C7" opacity="0.7"/>
+  <rect x="1" y="1" width="998" height="240" filter="url(#grain)" opacity="0.03" style="mix-blend-mode:overlay"/>
+  <text x="44" y="48.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="11" letter-spacing="2.2" fill="#6B6759">STACK</text>
+  <rect x="44" y="56.0" width="30" height="2" fill="#2A5A85"/>
+  <rect x="44" y="70.0" width="912" height="1" fill="#DCD7C7"/>
+  <rect x="44" y="97.0" width="7" height="7" fill="#966E17"/>
+  <text x="61" y="104.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="11" letter-spacing="2.2" fill="#966E17">LANGUAGES</text>
+  <text x="200" y="104.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#09090E">TypeScript<tspan fill="#6B6759">  &#183;  </tspan>Java<tspan fill="#6B6759">  &#183;  </tspan>JavaScript<tspan fill="#6B6759">  &#183;  </tspan>Python<tspan fill="#6B6759">  &#183;  </tspan>C#<tspan fill="#6B6759">  &#183;  </tspan>SQL</text>
+  <rect x="44" y="131.0" width="7" height="7" fill="#2A5A85"/>
+  <text x="61" y="138.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="11" letter-spacing="2.2" fill="#2A5A85">FRONTEND</text>
+  <text x="200" y="138.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#09090E">React<tspan fill="#6B6759">  &#183;  </tspan>Vite<tspan fill="#6B6759">  &#183;  </tspan>Tailwind<tspan fill="#6B6759">  &#183;  </tspan>JavaFX<tspan fill="#6B6759">  &#183;  </tspan>PWA</text>
+  <rect x="44" y="165.0" width="7" height="7" fill="#B93A18"/>
+  <text x="61" y="172.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="11" letter-spacing="2.2" fill="#B93A18">BACKEND</text>
+  <text x="200" y="172.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#09090E">Node<tspan fill="#6B6759">  &#183;  </tspan>Express<tspan fill="#6B6759">  &#183;  </tspan>Socket.IO<tspan fill="#6B6759">  &#183;  </tspan>PostgreSQL<tspan fill="#6B6759">  &#183;  </tspan>Drizzle<tspan fill="#6B6759">  &#183;  </tspan>Zod</text>
+  <rect x="44" y="199.0" width="7" height="7" fill="#0083A3"/>
+  <text x="61" y="206.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="11" letter-spacing="2.2" fill="#0083A3">TOOLING</text>
+  <text x="200" y="206.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#09090E">Git<tspan fill="#6B6759">  &#183;  </tspan>Vitest<tspan fill="#6B6759">  &#183;  </tspan>Playwright<tspan fill="#6B6759">  &#183;  </tspan>Actions<tspan fill="#6B6759">  &#183;  </tspan>Railway<tspan fill="#6B6759">  &#183;  </tspan>Tailscale</text>
+</svg>

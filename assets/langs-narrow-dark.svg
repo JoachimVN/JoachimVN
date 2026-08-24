@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 158" width="400" height="158" role="img" aria-label="Language mix: TypeScript 57.0 percent, Java 25.8 percent, CSS 8.6 percent, JavaScript 4.4 percent, Python 2.8 percent, Other 1.4 percent">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <clipPath id="wipe"><rect x="18" y="56" width="364" height="14">
+      <animate attributeName="width" values="0;0;364" keyTimes="0;0.1304;1" dur="1.15s" begin="0s" fill="freeze"/>
+    </rect></clipPath>
+  </defs>
+  <rect x="0.5" y="0.5" width="399" height="157" fill="#09090E" stroke="#26252E"/>
+  <rect x="7.5" y="7.5" width="385.0" height="143" fill="none" stroke="#26252E" opacity="0.7"/>
+  <rect x="1" y="1" width="398" height="156" filter="url(#grain)" opacity="0.05" style="mix-blend-mode:overlay"/>
+  <text x="18" y="28.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10" letter-spacing="0.8" fill="#89836F">LANGUAGE MIX</text>
+  <rect x="18" y="36.0" width="22" height="2" fill="#00ADD8"/>
+  <rect x="18" y="42.0" width="364" height="1" fill="#26252E"/>
+  <g clip-path="url(#wipe)"><rect x="18.00" y="56" width="205.53" height="14" fill="#2b7489"/><rect x="225.53" y="56" width="91.96" height="14" fill="#b07219"/><rect x="319.49" y="56" width="29.31" height="14" fill="#563d7c"/><rect x="350.80" y="56" width="13.93" height="14" fill="#f1e05a"/><rect x="366.73" y="56" width="8.16" height="14" fill="#3572A5"/><rect x="376.89" y="56" width="3.11" height="14" fill="#888888"/></g>
+  <rect x="18.0" y="80.0" width="8" height="8" fill="#2b7489"/>
+  <text x="32.0" y="88.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#F2EFE6">TypeScript</text>
+  <text x="190.0" y="88.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#89836F">57.0%</text>
+  <rect x="200.0" y="80.0" width="8" height="8" fill="#b07219"/>
+  <text x="214.0" y="88.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#F2EFE6">Java</text>
+  <text x="372.0" y="88.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#89836F">25.8%</text>
+  <rect x="18.0" y="102.0" width="8" height="8" fill="#563d7c"/>
+  <text x="32.0" y="110.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#F2EFE6">CSS</text>
+  <text x="190.0" y="110.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#89836F">8.6%</text>
+  <rect x="200.0" y="102.0" width="8" height="8" fill="#f1e05a"/>
+  <text x="214.0" y="110.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#F2EFE6">JavaScript</text>
+  <text x="372.0" y="110.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#89836F">4.4%</text>
+  <rect x="18.0" y="124.0" width="8" height="8" fill="#3572A5"/>
+  <text x="32.0" y="132.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#F2EFE6">Python</text>
+  <text x="190.0" y="132.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#89836F">2.8%</text>
+  <rect x="200.0" y="124.0" width="8" height="8" fill="#888888"/>
+  <text x="214.0" y="132.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#F2EFE6">Other</text>
+  <text x="372.0" y="132.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#89836F">1.4%</text>
+</svg>
