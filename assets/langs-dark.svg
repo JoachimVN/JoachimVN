@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 178" width="1000" height="178" role="img" aria-label="Language mix: TypeScript 57.0 percent, Java 25.8 percent, CSS 8.6 percent, JavaScript 4.4 percent, Python 2.8 percent, Other 1.4 percent">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 178" width="1000" height="178" role="img" aria-label="Language mix: TypeScript 56.7 percent, Java 25.7 percent, CSS 8.6 percent, JavaScript 4.4 percent, Python 3.3 percent, Other 1.4 percent">
   <defs>
     <filter id="grain" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/>
@@ -14,13 +14,13 @@
   <text x="44" y="48.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="11" letter-spacing="2.2" fill="#89836F">LANGUAGE MIX</text>
   <rect x="44" y="56.0" width="30" height="2" fill="#00ADD8"/>
   <rect x="44" y="70.0" width="912" height="1" fill="#26252E"/>
-  <g clip-path="url(#wipe)"><rect x="44.00" y="86" width="517.95" height="18" fill="#2b7489"/><rect x="563.95" y="86" width="233.42" height="18" fill="#b07219"/><rect x="799.38" y="86" width="76.45" height="18" fill="#563d7c"/><rect x="877.83" y="86" width="37.91" height="18" fill="#f1e05a"/><rect x="917.74" y="86" width="23.46" height="18" fill="#3572A5"/><rect x="943.20" y="86" width="10.80" height="18" fill="#888888"/></g>
+  <g clip-path="url(#wipe)"><rect x="44.00" y="86" width="515.42" height="18" fill="#2b7489"/><rect x="561.42" y="86" width="232.28" height="18" fill="#b07219"/><rect x="795.70" y="86" width="76.07" height="18" fill="#563d7c"/><rect x="873.77" y="86" width="37.72" height="18" fill="#f1e05a"/><rect x="913.49" y="86" width="27.78" height="18" fill="#3572A5"/><rect x="943.26" y="86" width="10.74" height="18" fill="#888888"/></g>
   <rect x="44.0" y="118.0" width="8" height="8" fill="#2b7489"/>
   <text x="58.0" y="126.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#F2EFE6">TypeScript</text>
-  <text x="318.0" y="126.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">57.0%</text>
+  <text x="318.0" y="126.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">56.7%</text>
   <rect x="348.0" y="118.0" width="8" height="8" fill="#b07219"/>
   <text x="362.0" y="126.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#F2EFE6">Java</text>
-  <text x="622.0" y="126.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">25.8%</text>
+  <text x="622.0" y="126.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">25.7%</text>
   <rect x="652.0" y="118.0" width="8" height="8" fill="#563d7c"/>
   <text x="666.0" y="126.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#F2EFE6">CSS</text>
   <text x="926.0" y="126.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">8.6%</text>
@@ -29,7 +29,7 @@
   <text x="318.0" y="152.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">4.4%</text>
   <rect x="348.0" y="144.0" width="8" height="8" fill="#3572A5"/>
   <text x="362.0" y="152.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#F2EFE6">Python</text>
-  <text x="622.0" y="152.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">2.8%</text>
+  <text x="622.0" y="152.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">3.3%</text>
   <rect x="652.0" y="144.0" width="8" height="8" fill="#888888"/>
   <text x="666.0" y="152.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#F2EFE6">Other</text>
   <text x="926.0" y="152.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="13" fill="#89836F">1.4%</text>

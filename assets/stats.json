@@ -1,7 +1,7 @@
 {
-  "commits": 2865,
-  "prs": 244,
-  "issues": 107,
+  "commits": 2595,
+  "prs": 205,
+  "issues": 106,
   "repos": 10,
   "stars": 5,
   "followers": 3,
@@ -10,7 +10,7 @@
     "Java": 1362400,
     "CSS": 453998,
     "JavaScript": 230968,
-    "Python": 147331,
+    "Python": 173156,
     "Other": 74080
   }
 }
