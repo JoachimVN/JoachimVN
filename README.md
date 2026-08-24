@@ -30,14 +30,14 @@ I build things that I'd actually want to use myself.
   <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/scoreboard-narrow-dark.svg">
   <source media="(max-width: 600px)" srcset="assets/scoreboard-narrow-light.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/scoreboard-dark.svg">
-  <img alt="Scoreboard: 2,865 commits, 244 pull requests, 10 repositories, 107 issues opened" src="assets/scoreboard-light.svg" width="100%">
+  <img alt="Scoreboard: 2,596 commits, 205 pull requests, 10 repositories, 106 issues opened" src="assets/scoreboard-light.svg" width="100%">
 </picture>
 
 <picture>
   <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/langs-narrow-dark.svg">
   <source media="(max-width: 600px)" srcset="assets/langs-narrow-light.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/langs-dark.svg">
-  <img alt="Language mix: TypeScript 57.0%, Java 25.8%, CSS 8.6%, JavaScript 4.4%, Python 2.8%, other 1.4%" src="assets/langs-light.svg" width="100%">
+  <img alt="Language mix: TypeScript 56.7%, Java 25.7%, CSS 8.6%, JavaScript 4.4%, Python 3.3%, other 1.4%" src="assets/langs-light.svg" width="100%">
 </picture>
 
 <br><br>

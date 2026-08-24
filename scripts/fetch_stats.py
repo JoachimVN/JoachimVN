@@ -54,8 +54,16 @@ def gh(*args):
 
 
 def search_count(query):
+    """Counts are pinned to public work with is:public.
+
+    Without it the number depends on who runs this. A personal token can see
+    private repos and reports 2867 commits; the Actions GITHUB_TOKEN cannot and
+    reports 2596. That made the figure flip every time the workflow ran. Public
+    only is the version a visitor could verify, and it is the same number
+    wherever it runs. To count private work too, drop is:public here and give
+    the workflow a personal access token instead of GITHUB_TOKEN."""
     endpoint = "search/commits" if "type:" not in query else "search/issues"
-    return gh("api", "-X", "GET", endpoint, "-f", "q=" + query)["total_count"]
+    return gh("api", "-X", "GET", endpoint, "-f", "q=" + query + " is:public")["total_count"]
 
 
 def is_authored(path, repo):
