@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 40" width="89" height="40" role="img" aria-label="EMAIL">
-  <rect x="0.5" y="0.5" width="88.0" height="39" fill="#09090E" stroke="#E34C26" stroke-opacity="0.7"/>
-  <rect x="10" y="16.0" width="8" height="8" fill="#E34C26"/>
-  <text x="28" y="24.5" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="12" letter-spacing="1.8" fill="#F2EFE6">EMAIL</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97 40" width="97" height="40" role="img" aria-label="EMAIL">
+  <rect x="0.5" y="0.5" width="96.0" height="39" fill="#09090E" stroke="#E34C26" stroke-opacity="0.7"/>
+  <g transform="translate(19 20.0)"><g fill="none" stroke="#E34C26" stroke-width="1.5" stroke-linejoin="round"><rect x="-8" y="-6" width="16" height="12" rx="1.5"/><path d="M-8 -4.8L0 1.2L8 -4.8"/></g></g>
+  <text x="36" y="24.5" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="12" letter-spacing="1.8" fill="#F2EFE6">EMAIL</text>
 </svg>

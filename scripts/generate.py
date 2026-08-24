@@ -106,10 +106,10 @@ def panel(p, L, h, body, label, extra_defs=""):
 '''
 
 
-def rail(p, L, y, left, right="", right_fill=None):
+def rail(p, L, y, left, right="", right_fill=None, left_fill=None):
     """One line of small tracked type, left aligned and optionally right aligned."""
     out = ['<text x="%d" y="%.1f" font-family="%s" font-size="%s" letter-spacing="%s" fill="%s">%s</text>'
-           % (L["pad"], y, MONO, L["eb_fs"], L["eb_ls"], p["dim"], left)]
+           % (L["pad"], y, MONO, L["eb_fs"], L["eb_ls"], left_fill or p["dim"], left)]
     if right:
         out.append('<text x="%d" y="%.1f" text-anchor="end" font-family="%s" font-size="%s" '
                    'letter-spacing="%s" fill="%s">%s</text>'
@@ -232,7 +232,7 @@ def banner(p, L):
         rule_bottom = board_y + board_h + 16
         top = rail(p, L, top_y, "NTNU &#183; " + PROGRAMME, year_label())
         rails = (rail(p, L, rule_bottom + 20, LOCATION, SITE)
-                 + rail(p, L, rule_bottom + 38, AVAILABILITY, "", cyan))
+                 + rail(p, L, rule_bottom + 38, AVAILABILITY, left_fill=cyan))
         h = rule_bottom + 54
 
     defs = f'''
@@ -443,14 +443,30 @@ def stack(p, L):
 
 
 # --------------------------------------------------------------- link plates
-def plate(label, accent):
+SANS = "ui-sans-serif,-apple-system,'Segoe UI',Roboto,Arial,sans-serif"
+
+# Drawn at 16px around the origin, so each one drops into the same slot. Line
+# weight matches the hairline rules on the boards.
+GLOBE = ('<g fill="none" stroke="%(c)s" stroke-width="1.5" stroke-linecap="round">'
+         '<circle cx="0" cy="0" r="7"/><ellipse cx="0" cy="0" rx="3" ry="7"/>'
+         '<path d="M-6.6 -2.6H6.6M-6.6 2.6H6.6"/></g>')
+ENVELOPE = ('<g fill="none" stroke="%(c)s" stroke-width="1.5" stroke-linejoin="round">'
+            '<rect x="-8" y="-6" width="16" height="12" rx="1.5"/>'
+            '<path d="M-8 -4.8L0 1.2L8 -4.8"/></g>')
+LINKEDIN = ('<g><rect x="-7.5" y="-7.5" width="15" height="15" rx="2.5" fill="%(c)s"/>'
+            '<text x="0" y="4.1" text-anchor="middle" font-family="' + SANS +
+            '" font-size="10.5" font-weight="700" fill="%(bg)s">in</text></g>')
+
+
+def plate(label, accent, icon):
     h, size = 40, 12
-    w = mono_w(label, size, 1.8) + 44
+    w = 36 + mono_w(label, size, 1.8) + 16
     p = DARK
+    glyph = icon % {"c": accent, "bg": p["bg"]}
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.0f} {h}" width="{w:.0f}" height="{h}" role="img" aria-label="{label}">
   <rect x="0.5" y="0.5" width="{w - 1:.1f}" height="{h - 1}" fill="{p['bg']}" stroke="{accent}" stroke-opacity="0.7"/>
-  <rect x="10" y="{h / 2 - 4}" width="8" height="8" fill="{accent}"/>
-  <text x="28" y="{h / 2 + 4.5}" font-family="{MONO}" font-size="{size}" letter-spacing="1.8" fill="{p['fg']}">{label}</text>
+  <g transform="translate(19 {h / 2})">{glyph}</g>
+  <text x="36" y="{h / 2 + 4.5}" font-family="{MONO}" font-size="{size}" letter-spacing="1.8" fill="{p['fg']}">{label}</text>
 </svg>
 '''
 
@@ -466,9 +482,9 @@ def main():
             files["stack%s-%s.svg" % (size, theme)] = stack(p, L)
             files["scoreboard%s-%s.svg" % (size, theme)] = scoreboard(p, L, d)
             files["langs%s-%s.svg" % (size, theme)] = langs(p, L, d)
-    files["plate-portfolio.svg"] = plate("JOAVN.DEV", DARK["accents"][0])
-    files["plate-linkedin.svg"] = plate("LINKEDIN", "#0A66C2")
-    files["plate-email.svg"] = plate("EMAIL", DARK["accents"][2])
+    files["plate-portfolio.svg"] = plate("JOAVN.DEV", DARK["accents"][0], GLOBE)
+    files["plate-linkedin.svg"] = plate("LINKEDIN", "#0A66C2", LINKEDIN)
+    files["plate-email.svg"] = plate("EMAIL", DARK["accents"][2], ENVELOPE)
 
     for name in sorted(files):
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:

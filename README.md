@@ -48,8 +48,4 @@ I build things that I'd actually want to use myself.
 &nbsp;
 <a href="mailto:joachim.v.nilsen@gmail.com"><img src="assets/plate-email.svg" alt="Email Joachim" height="40"></a>
 
-<br><br>
-
-<sub>Boards drawn by <code>scripts/generate.py</code>. Figures refreshed daily from the GitHub API.</sub>
-
 </div>
