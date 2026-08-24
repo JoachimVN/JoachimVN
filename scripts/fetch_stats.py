@@ -64,27 +64,34 @@ def search_count(query):
     return gh("api", "-X", "GET", endpoint, "-f", "q=" + query)["total_count"]
 
 
-def never_shrink(data):
-    """Commits, pull requests and issues only ever go up.
+# A token losing sight of every private repo takes about 10% off the commit
+# count. Different tokens legitimately differ by a percent or two, because an
+# organisation can decline access that the owner's own token has. So catch the
+# cliff, not the wobble.
+MAX_DROP = 0.05
 
-    A drop means the token lost sight of something rather than that the work
-    disappeared, which is exactly what happened the first time the scheduled run
-    fired with GITHUB_TOKEN: 2867 commits became 2596. Refuse to write in that
-    case, so a scope problem shows up as a failed run instead of as smaller
-    numbers on the profile."""
-    path = OUT
-    if not os.path.exists(path):
+
+def no_big_drop(data):
+    """Refuse to write figures that fell off a cliff.
+
+    The counts should grow. A large fall means the token stopped seeing
+    something rather than that the work disappeared, which is what happened when
+    the first scheduled run used GITHUB_TOKEN and 2869 commits became 2598.
+    Small falls are normal: a personal token and an org-restricted one disagree
+    slightly about private repos, and that is not worth failing over."""
+    if not os.path.exists(OUT):
         return
-    with open(path, encoding="utf-8") as f:
+    with open(OUT, encoding="utf-8") as f:
         previous = json.load(f)
     for key in ("commits", "prs", "issues"):
         was, now = previous.get(key, 0), data[key]
-        if now < was:
+        allowed = max(20, was * MAX_DROP)
+        if was - now > allowed:
             raise RuntimeError(
-                "%s went from %s to %s. Counts do not go down, so this token is "
-                "probably missing private repos. Add a personal access token with "
-                "repo scope as the STATS_TOKEN secret, or run this locally. "
-                "Keeping the previous figures." % (key, was, now))
+                "%s fell from %s to %s, past the %.0f it is allowed to move. That "
+                "usually means the token cannot see private repos. Check that the "
+                "STATS_TOKEN secret exists and has repo scope. Keeping the "
+                "previous figures." % (key, was, now, allowed))
 
 
 def is_authored(path, repo):
@@ -140,7 +147,7 @@ def main():
         "languages": mix,
     }
 
-    never_shrink(data)
+    no_big_drop(data)
 
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
