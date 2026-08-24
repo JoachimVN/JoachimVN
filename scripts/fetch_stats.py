@@ -54,16 +54,37 @@ def gh(*args):
 
 
 def search_count(query):
-    """Counts are pinned to public work with is:public.
+    """Counts include private work, so this needs a token that can see it.
 
-    Without it the number depends on who runs this. A personal token can see
-    private repos and reports 2867 commits; the Actions GITHUB_TOKEN cannot and
-    reports 2596. That made the figure flip every time the workflow ran. Public
-    only is the version a visitor could verify, and it is the same number
-    wherever it runs. To count private work too, drop is:public here and give
-    the workflow a personal access token instead of GITHUB_TOKEN."""
+    The Actions GITHUB_TOKEN only sees public repos and undercounts by whatever
+    is private. The workflow therefore passes secrets.STATS_TOKEN when it exists.
+    never_shrink() below is what stops a weaker token quietly lowering the
+    figures on the profile."""
     endpoint = "search/commits" if "type:" not in query else "search/issues"
-    return gh("api", "-X", "GET", endpoint, "-f", "q=" + query + " is:public")["total_count"]
+    return gh("api", "-X", "GET", endpoint, "-f", "q=" + query)["total_count"]
+
+
+def never_shrink(data):
+    """Commits, pull requests and issues only ever go up.
+
+    A drop means the token lost sight of something rather than that the work
+    disappeared, which is exactly what happened the first time the scheduled run
+    fired with GITHUB_TOKEN: 2867 commits became 2596. Refuse to write in that
+    case, so a scope problem shows up as a failed run instead of as smaller
+    numbers on the profile."""
+    path = OUT
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        previous = json.load(f)
+    for key in ("commits", "prs", "issues"):
+        was, now = previous.get(key, 0), data[key]
+        if now < was:
+            raise RuntimeError(
+                "%s went from %s to %s. Counts do not go down, so this token is "
+                "probably missing private repos. Add a personal access token with "
+                "repo scope as the STATS_TOKEN secret, or run this locally. "
+                "Keeping the previous figures." % (key, was, now))
 
 
 def is_authored(path, repo):
@@ -118,6 +139,8 @@ def main():
         "followers": user["followers"],
         "languages": mix,
     }
+
+    never_shrink(data)
 
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)

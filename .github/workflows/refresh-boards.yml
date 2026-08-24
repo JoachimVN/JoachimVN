@@ -28,7 +28,10 @@ jobs:
 
       - name: Fetch stats
         env:
-          GH_TOKEN: ${{ github.token }}
+          # github.token cannot see private repos, so the counts would drop by
+          # whatever is private. STATS_TOKEN is a personal access token with repo
+          # scope; without it fetch_stats.py refuses to write smaller numbers.
+          GH_TOKEN: ${{ secrets.STATS_TOKEN || github.token }}
         run: python scripts/fetch_stats.py
 
       - name: Redraw boards

@@ -30,7 +30,7 @@ I build things that I'd actually want to use myself.
   <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/scoreboard-narrow-dark.svg">
   <source media="(max-width: 600px)" srcset="assets/scoreboard-narrow-light.svg">
   <source media="(prefers-color-scheme: dark)" srcset="assets/scoreboard-dark.svg">
-  <img alt="Scoreboard: 2,596 commits, 205 pull requests, 10 repositories, 106 issues opened" src="assets/scoreboard-light.svg" width="100%">
+  <img alt="Scoreboard: 2,869 commits, 244 pull requests, 10 repositories, 107 issues opened" src="assets/scoreboard-light.svg" width="100%">
 </picture>
 
 <picture>
