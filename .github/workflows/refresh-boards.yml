@@ -9,6 +9,11 @@ on:
     - cron: "17 5 * * *"
   workflow_dispatch:
   push:
+    # Only from main. A scripts change on a feature branch would otherwise push a
+    # refresh commit onto that branch seconds after the push, which moves the head
+    # while the pull request is being analysed and leaves the check cancelled.
+    branches:
+      - main
     paths:
       - "scripts/**"
       - ".github/workflows/refresh-boards.yml"

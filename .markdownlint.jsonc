@@ -1,0 +1,11 @@
+{
+  // The README is a GitHub profile page, not prose. Every board is a <picture>
+  // with <source media="..."> so the light/dark and wide/narrow variants switch
+  // themselves; Markdown image syntax cannot carry a media query, so the HTML is
+  // load-bearing rather than a shortcut.
+  "MD033": false,
+  // The page opens with the drawn banner, which is the heading. A text "# Joachim
+  // Valdersnes Nilsen" above it would be a duplicate of the name already on the
+  // flip dot board.
+  "MD041": false
+}
