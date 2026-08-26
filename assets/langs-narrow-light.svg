@@ -14,7 +14,7 @@
   <text x="18" y="28.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10" letter-spacing="0.8" fill="#6B6759">LANGUAGE MIX</text>
   <rect x="18" y="36.0" width="22" height="2" fill="#0083A3"/>
   <rect x="18" y="42.0" width="364" height="1" fill="#DCD7C7"/>
-  <g clip-path="url(#wipe)"><rect x="18.00" y="56" width="204.39" height="14" fill="#2b7489"/><rect x="224.39" y="56" width="91.45" height="14" fill="#b07219"/><rect x="317.84" y="56" width="29.14" height="14" fill="#563d7c"/><rect x="348.98" y="56" width="13.84" height="14" fill="#f1e05a"/><rect x="364.83" y="56" width="10.09" height="14" fill="#3572A5"/><rect x="376.92" y="56" width="3.08" height="14" fill="#888888"/></g>
+  <g clip-path="url(#wipe)"><rect x="18.00" y="56" width="204.37" height="14" fill="#2b7489"/><rect x="224.37" y="56" width="91.44" height="14" fill="#b07219"/><rect x="317.81" y="56" width="29.14" height="14" fill="#563d7c"/><rect x="348.94" y="56" width="13.84" height="14" fill="#f1e05a"/><rect x="364.79" y="56" width="10.13" height="14" fill="#3572A5"/><rect x="376.92" y="56" width="3.08" height="14" fill="#888888"/></g>
   <rect x="18.0" y="80.0" width="8" height="8" fill="#2b7489"/>
   <text x="32.0" y="88.0" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#09090E">TypeScript</text>
   <text x="190.0" y="88.0" text-anchor="end" font-family="ui-monospace,'SF Mono','Cascadia Mono','DejaVu Sans Mono',Consolas,monospace" font-size="10.5" fill="#6B6759">56.7%</text>
